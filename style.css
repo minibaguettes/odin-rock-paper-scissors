@@ -327,6 +327,78 @@ body {
 	z-index: 6;
 }
 
+.start-screen, .victory-screen, .victory-end, .crit-screen, .lose-end, .lose-load, .loading-screen {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+.fade-in {
+	animation: fadeIn 1s;
+	opacity: 1;
+}
+
+.fade-out {
+	animation: fadeOut 1s;
+	opacity: 0;
+}
+
+.victory-screen {
+	transform: translateX(-100%);
+	animation: after-crit 2s;
+}
+
+.ttx0 {
+	transform: translateX(0%);
+}
+
+.victory-end {
+	animation: fadeIn 5s;
+}
+
+.lose-load {
+	animation: fadeInFadeOut 2s;
+	z-index: 6;
+	opacity: 0;
+}
+
+.lose-end {
+	opacity: 50%;
+}
+
+.blk-screen {
+	background-color: black;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  45% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+}
+
+@keyframes fadeInFadeOut {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	51% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
 @keyframes crit {
 	0% {
 		transform:  translateX(-100%);
@@ -346,21 +418,6 @@ body {
 		transform-origin: 100% 50%;
 		
 	}
-}
-
-.start-screen, .victory-screen, .victory-end, .crit-screen, .lose-end, .lose-load {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-}
-
-.victory-screen {
-	transform: translateX(-100%);
-	animation: after-crit 2s;
-}
-
-.ttx0 {
-	transform: translateX(0%);
 }
 
 @keyframes after-crit {
@@ -383,46 +440,6 @@ body {
 		opacity: 1;
 		transform: translateX(0%);
 		transform-origin: 100% 50%;
-	}
-}
-
-.victory-end {
-	animation: fadeIn 5s;
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  45% { opacity: 1; }
-}
-
-.lose-load {
-	animation: fadeInFadeOut 3s;
-	z-index: 6;
-	opacity: 0;
-}
-
-.lose-end {
-	opacity: 50%;
-}
-
-.blk-screen {
-	background-color: black;
-}
-
-
-
-@keyframes fadeInFadeOut {
-	0% {
-		opacity: 0;
-	}
-	50% {
-		opacity: 1;
-	}
-	51% {
-		opacity: 1;
-	}
-	100% {
-		opacity: 0;
 	}
 }
 

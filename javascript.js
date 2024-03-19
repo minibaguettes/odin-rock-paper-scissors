@@ -105,14 +105,12 @@ loseDialogue.classList.add('lose-dialogue');
 // *~*~*~*~*~*~*~**~*~*~*~*~*~*~*~*~*~**~*~*~*~*~*~*~*~*~*~**~*~*~*~*~*~ //
 
 playBtn.addEventListener('click', function() {
-  
   preGame();
 });
 
 homeBtn.addEventListener('click', function() {
   homeScreen();
 });
-
 
 let keyChoice = '';
 const handleKeys = (e) => {
@@ -128,8 +126,6 @@ const handleKeys = (e) => {
   console.log(playRound(keyChoice, getComputerChoice()));
 }
 
-
-
 cpuScoreImg.addEventListener('mouseover', function() {
   cpuScore.classList.toggle('hp-toggle');
   cpuScoreImg.src = 'p5r/p5r-cpu-hp-0.png';
@@ -140,50 +136,120 @@ cpuScoreImg.addEventListener('mouseout', function() {
   cpuScoreImg.src = cpuTemp;
 });
 
-
-homeScreen();
-//endGame();
+firstLoad();
 
 // *~*~*~*~*~*~*~**~*~*~*~*~*~*~*~*~*~**~*~*~*~*~*~*~*~*~*~**~*~*~*~*~*~ //
 
 // prepare game
 function preGame() {
   console.log('start');
-  // change to play screen
-  if (startScreen.parentElement === scene) {
-    scene.removeChild(startScreen);
+  setTimeout(function() {
+    setTimeout(function() {
+
+      /* last minute fixes */
+
+      // remove loading screen
+      if (loadingScreen.parentElement === scene ){
+        scene.removeChild(loadingScreen);
+      }
+      loadingScreen.classList.remove('fade-out');
+
+      /* play */
+      
+      playGame();
+
+    }, 1000);
+
+    /* reset everything */
+
+    // fix loading screen
+    sceneBtns.classList.remove('fade-out');
+    loadingScreen.classList.remove('fade-in');
+    if (startScreen.parentElement === scene) {
+      scene.removeChild(startScreen);
+    }
+    // reset scores
+    cpuScore.textContent = 1;
+    cpuScoreImg.src = 'p5r/p5r-cpu-hp-' + cpuScore.textContent + '.png'
+    userScore.textContent = 1;
+    // reset images
+    userImg.classList.add('userImgIdle');
+    cpuImg.classList.add('cpuImgIdle');
+    // remove lose scene
+    if (loseEnd.parentElement === scene) {
+      scene.removeChild(loseEnd);
+      scene.removeChild(loseLoad);
+      scene.removeChild(loseDialogue);
+      scene.classList.remove('blk-screen');
+    }
+    if (victoryEnd.parentElement === scene) {
+      scene.removeChild(victoryEnd);
+      scene.removeChild(victoryScreen);
+      scene.removeChild(critScreen);
+    }
+    // fix / hide buttons
+    sceneBtns.id = 'scene-btns-fight';
+    playBtn.classList.add('hide');
+    homeBtn.classList.remove('hide');
+    loadingScreen.classList.add('fade-out');
+
+  }, 1000);
+
+  /* loading screen */
+
+  scene.appendChild(loadingScreen);
+  loadingScreen.classList.add('fade-in');
+  sceneBtns.classList.remove('fade-in');
+  sceneBtns.classList.add('fade-out');
+
+}
+
+function firstLoad() {
+  scene.appendChild(startScreen);
+  if (loadingScreen.parentElement === scene ){
+    scene.removeChild(loadingScreen);
   }
-  // reset scores
-  cpuScore.textContent = 1;
-  userScore.textContent = 1;
-  // reset images
-  userImg.classList.add('userImgIdle');
-  cpuImg.classList.add('cpuImgIdle');
-  // remove scene
-  if (loseEnd.parentElement === scene) {
-    scene.removeChild(loseEnd);
-    scene.removeChild(loseLoad);
-    scene.removeChild(loseDialogue);
-    scene.classList.remove('blk-screen');
-  }
-  // fix / hide buttons
-  sceneBtns.id = 'scene-btns-fight';
-  playBtn.classList.add('hide');
-  homeBtn.classList.remove('hide');
-  // play
-  playGame();
+  sceneBtns.id = 'scene-btns-home';
+  homeBtn.classList.add('hide');
 }
 
 // show home screen
 function homeScreen() {
   console.log('home');
-  // change to home screen
-  scene.appendChild(startScreen);
-  // fix buttons
-  sceneBtns.id = 'scene-btns-home';
-  playBtn.classList.remove('hide');
+  setTimeout(function() {
+    setTimeout(function() {
+
+      // remove loading screen
+      loadingScreen.classList.add('fade-out');
+      if (loadingScreen.parentElement === scene) {
+        scene.removeChild(loadingScreen);
+      }
+      loadingScreen.classList.remove('fade-out');
+
+    }, 1000);
+
+    /* set home screen up */
+
+    loadingScreen.classList.remove('fade-in');
+    playBtn.classList.remove('hide');
+    sceneBtns.classList.remove('hide');
+    playBtn.classList.add('play-home');
+    playBtn.textContent = 'Play';
+    startScreen.classList.add('fade-in');
+    sceneBtns.id = 'scene-btns-home';
+    sceneBtns.classList.remove('fade-out');
+    sceneBtns.classList.add('fade-in');
+    scene.appendChild(startScreen);
+  }, 1000);
+
+  /* loading screen */
+
+  sceneBtns.classList.remove('fade-in');
+  sceneBtns.classList.add('fade-out');
+  sceneBtns.classList.add('hide');
+  scene.appendChild(loadingScreen);
+  loadingScreen.classList.add('fade-in');
   homeBtn.classList.add('hide');
-  playBtn.classList.add('play-home')
 }
 
 // end game after 5 rounds
@@ -192,15 +258,23 @@ function endGame() {
   if (parseInt(cpuScore.textContent) <= 0) {
     setTimeout(function() {
       setTimeout(function() {
-        // *** - show victory end screen
-        scene.appendChild(victoryEnd);
-      }, 1000);
-      // ** - show victory screen
-      victoryScreen.classList.add('ttx0');
+        setTimeout(function() {
+          // *** - show victory end screen
+          scene.appendChild(victoryEnd);
+          // **** - show buttons
+          sceneBtns.classList.remove('hide');
+          playBtn.classList.remove('play-home')
+          playBtn.classList.remove('hide');
+          sceneBtns.id = 'scene-btns-lose';
+          playBtn.textContent = 'Play again?';
+        }, 100);
+        // ** - show victory screen
+        victoryScreen.classList.add('ttx0');
+      }, 2000);
+      // * - fade in/out crit visual
+      scene.appendChild(critScreen);
+      scene.appendChild(victoryScreen);
     }, 1000);
-    // * - fade in/out crit visual
-    scene.appendChild(critScreen);
-    scene.appendChild(victoryScreen);
   }
   // if user loses
   else {
@@ -217,7 +291,7 @@ function endGame() {
           playBtn.classList.remove('hide');
           sceneBtns.id = 'scene-btns-lose';
           playBtn.textContent = 'Play again?';
-        }, 2000);
+        }, 1000);
       }, 1000);
       // ** - show end loading screen
       scene.appendChild(loseLoad);
@@ -230,9 +304,10 @@ function endGame() {
 
 // play a game (5 rounds)
 function playGame() { 
+console.log('cpu: ' + cpuScore.textContent);
+console.log('user: ' + userScore.textContent);
   let choice;  
   document.addEventListener('keydown', handleKeys);
-
     buttons.forEach(function(button) {
       button.addEventListener("click", function() {
         if (button.id == 'btnr') {
@@ -246,6 +321,8 @@ function playGame() {
         }
         cpuChoice = getComputerChoice();
         console.log(playRound(choice, cpuChoice));
+console.log('cpu: ' + cpuScore.textContent);
+console.log('user: ' + userScore.textContent);
         if (parseInt(userScore.textContent) <= 0 || parseInt(cpuScore.textContent) <= 0) {
           endGame();
           return;
@@ -345,12 +422,12 @@ function userHurt(playerSelection, computerSelection){
 function roundWait() {
   setTimeout(function() {
     userTied();
-    dialogue.classList.toggle('hide');
+    dialogue.classList.add('hide');
     userBg.classList.remove('hide'); 
     document.addEventListener('keydown', handleKeys);
     buttons.forEach(function(button) {
       button.disabled = false;
-      button.classList.toggle('hide');
+      button.classList.remove('hide');
     });
     playBtn.disabled = false;
   homeBtn.disabled = false;
@@ -358,7 +435,7 @@ function roundWait() {
 
   buttons.forEach(function(button) {
     button.disabled = true;
-    button.classList.toggle('hide');
+    button.classList.add('hide');
   });
   playBtn.disabled = true;
   homeBtn.disabled = true;
