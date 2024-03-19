@@ -1,5 +1,5 @@
 button, input[type="submit"], input[type="reset"] {
-	background: none;
+	background: black;
 	color: inherit;
 	border: none;
 	padding: 0;
@@ -8,70 +8,521 @@ button, input[type="submit"], input[type="reset"] {
 	outline: inherit;
 }
 
-.hidden {
-	display: none;
-}
-
-.flex {
+body {
 	display: flex;
-  flex-direction: row;
-}
-
-.center {
+	flex-direction: column;
 	width: 100%;
-	text-align: center;
+	height: 100%;
+	margin: 0;
+	border: none;
+	background-color: rgb(32, 32, 32, 0.5);
+	background-blend-mode: overlay;
+	overflow: hidden;
+	background-image: url('p5r/p5r-mementos.png');
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
-.headflex {
-	justify-content: space-around;
+@font-face {
+	font-family: Fight;
+	src: url('Persona5main.ttf');
 }
 
-.header-init {
-	padding: 3% 0%;
-	width: 25%;
+@font-face {
+	font-family: Normal;
+	src: url('p5hatty.ttf');
+}
+
+*{
+	font-family: Fight;
+}
+
+.hide {
+	display: none;
+	opacity: 0%;
+}
+
+.op0 {
+	opacity: 0%;
+}
+
+#heading {
+	height: 15%;
+}
+
+.heading-rect {
+	position: absolute;
+	padding: 1vw;
+	margin: 5vw;
+	width: 50vw;
+	height: auto;
+	transform: skew(-20deg) rotate(-8deg);
+	background: black;
+	border: 0.5vw solid white;
 	color: white;
-	background-color:bisque;
+	font-size: 2vw;
+	text-align: center;
+	word-spacing: 1vw;
+	z-index: 5;
 }
 
-.score {
-	padding: 3% 0%;
-	width: 15%;
+#split {
+	display: flex;
+	height: 100%;
 }
 
-.header-init, .score {
+#cpu {
+	flex: 1;
+}
+
+.cpuImgIdle {
+	width: 18vw;
+	position: absolute;
+	right: 18vw;
+	bottom: 5vw;
+}
+
+.cpuImgWin {
+	width: 31vw;
+	position: absolute;
+	right: 8vw;
+	bottom: 5vw;
+}
+
+#cpu-score-img, #cpu-score-img0 {
+	width: 10vw;
+	position: absolute;
+	right: 13vw;
+	bottom: 22vw;
+}
+
+#cpu-score-img:hover, #cpu-score-img0:hover {
+	width: 11vw;
+	right: 12vw;
+	bottom: 21vw;
+}
+
+.cpuScore {
+	font-size: 4vw;
+	color: rgba(123,238,205,255);
+	position: fixed;
+	right: 15vw;
+	bottom: 26vw;
+	display: none;
+	pointer-events: none;
+}
+
+.hp-toggle {
 	display: block;
-	font-size: 35px;
 }
 
-.score-w {
-	background-color: green;
+#user {
+	flex: 1;
 }
 
-.score-l {
-	background-color: red;
+.userImgIdle {
+	width: 38vw;
+	position: absolute;
+	bottom: 0;
+	left: -3%;
+	z-index: 3;
+	pointer-events: none;
 }
 
-.icon {
-	font-size: 90px;
+.userImgWin {
+	width: 42vw;
+	position: absolute;
+	bottom: -11vw;
+	left: 0vw;
+	z-index: 3;
+}
+
+.buttons {
+	/*position: absolute;
+	/*bottom: 10vw;
+	left: 25vw;
+	width: 14vw;*/
+	height: auto;
+	
+	font-size: 2.2vw;
+	color: white;
 }
 
 .btn {
-	display: block;
-	float: left;
-	height: 180px;
-	width: 120px;
-	margin: 0% 5%;
+	/*position: absolute;
+	padding: 2%;
+	width: 120%;*/
+	padding-right: 0.5vw;
 	overflow: hidden;
-	text-align: center;
+	letter-spacing: -0.6vw;
 }
 
 .btn-h:hover {
-	font-size: 120px;
+	background-color: red;
+	/*border: 3px solid red;*/
+	font-size: 2.5vw;
 }
 
-#img-choices {
-  width: 100%;
-  
-  justify-content: center;
-  align-items: center; 
+#b {
+	position: absolute;
+	width: 50vw;
+	height: 50vw;
+	left: -1.5vw;
+	bottom: -15vw;
+	transform: rotate(-20deg);
 }
+
+#user-bg {
+	width: inherit;
+}
+
+#btnr {
+	position: absolute;
+	transform: rotate(-22deg);
+	right: 8.5vw;
+	top: 15vw;
+}
+
+#btnp {
+	position: absolute;
+	transform: rotate(10deg);
+	right: 2.5vw;
+	top: 26vw;
+}
+
+#btns {
+	position: absolute;
+	transform: rotate(30deg);
+	right: 10vw;
+	top: 32vw;
+	letter-spacing: -0.8vw;
+}
+
+#footing {
+	height: 15%;
+}
+
+#dialogue {
+	position: absolute;
+	width: 60vw;
+	z-index: 5;
+	bottom: 1vw;
+	left: 25vw;
+}
+
+.dialogue-img {
+	max-width: 100%;
+}
+
+.dialogue-text {
+	color: white;
+	bottom: 9vw;
+	left: 10vw;
+	position: relative;
+	font-size: 3vw;
+	text-align: left;
+	font-family: 'Normal';
+}
+
+.footing-score {
+	position: absolute;
+	right: -10vw;
+	bottom: -11.5vw;
+	text-align: center;
+	opacity: 80%;
+}
+
+.footing-score img {
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+	width: 40vw;
+}
+
+.userScore {
+	font-size: 4vw;
+	color: rgba(123,238,205,255);
+	bottom: 14vw;
+	left: 2vw;
+	position: relative;
+}
+
+.footing-score-HP {
+	font-size: 1.5vw;
+	color: rgba(123,238,205,255);
+	top: 15.5vw;
+	left: -2vw;
+	position: relative;
+	letter-spacing: -0.7vw;
+	font-weight: 1vw;
+}
+
+.scene-btns {
+	font-size: 2vw;
+	z-index: 5;
+}
+
+#scene-btns-home {
+	margin-top: 30vw;
+}
+
+#scene-btns-fight {
+	position: absolute;
+	bottom: 1vw;
+	right: 20vw;
+	opacity: 80%;
+}
+
+#scene-btns-lose {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	order: 2;
+	animation: fadeIn 2s;
+}
+
+#home:hover, #play:hover {
+	transform: scale(1.25);
+	background-color: red;
+	color: white;
+	border: 0px;
+}
+
+#home, #play {
+	color: white;
+	padding: 1vw;
+	z-index: 8;
+	pointer-events: initial;
+}
+
+.play-home {
+	border: 2px white solid;
+}
+
+.lose-dialogue {
+	color: white;
+	position: relative;
+	font-size: 3vw;
+	font-family: 'Normal';
+}
+
+#scene {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 7;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	pointer-events: none;
+}
+
+.crit-screen {
+	transform: scaleX(0);
+	transform-origin: 0% 50%;
+	animation: crit 2s;
+	z-index: 6;
+}
+
+@keyframes crit {
+	0% {
+		transform:  translateX(-100%);
+		transform-origin: 100% 50%;
+		
+	}
+	50% {
+		transform: translateX(0%);
+		transform-origin: 100% 50%;
+	}
+	51% {
+		transform: translateX(0%);
+		transform-origin: 100% 50%;
+	}
+	100% {
+		transform:  translateX(100%);
+		transform-origin: 100% 50%;
+		
+	}
+}
+
+.start-screen, .victory-screen, .victory-end, .crit-screen, .lose-end, .lose-load {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+.victory-screen {
+	transform: translateX(-100%);
+	animation: after-crit 2s;
+}
+
+.ttx0 {
+	transform: translateX(0%);
+}
+
+@keyframes after-crit {
+	0% {
+		opacity: 0;
+		transform: translateX(-100%);
+		transform-origin: 100% 50%;
+	}
+	50% {
+		opacity: 1;
+		transform: translateX(0%);
+		transform-origin: 100% 50%;
+	}
+	51% {
+		opacity: 1;
+		transform: translateX(0%);
+		transform-origin: 100% 50%;
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0%);
+		transform-origin: 100% 50%;
+	}
+}
+
+.victory-end {
+	animation: fadeIn 5s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  45% { opacity: 1; }
+}
+
+.lose-load {
+	animation: fadeInFadeOut 3s;
+	z-index: 6;
+	opacity: 0;
+}
+
+.lose-end {
+	opacity: 50%;
+}
+
+.blk-screen {
+	background-color: black;
+}
+
+
+
+@keyframes fadeInFadeOut {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	51% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+/* ~*~*~*~* SHAPES ~*~*~*~* */
+
+.tpz {
+	position: absolute;
+	z-index: 3;
+	border-top: 1em solid red;
+}
+
+.tpzr {
+	border-left: 0.1em solid transparent;
+	border-right: 0.5em solid transparent;
+	width: 45%;
+	height: auto;
+	bottom: 15vw;
+	left: -1vw;
+	transform:rotate(-23deg);
+	font-size: 2.5vw;
+}
+
+.tpzp {
+	border-left: 0.1em solid transparent;
+	border-right: 0.5em solid transparent;
+	width: 41%;
+	height: auto;
+	bottom: 12vw;
+	left: -1vw;
+	transform:rotate(5deg);
+	font-size: 3vw;
+}
+
+.tpzs {
+	border-left: 0.1em solid transparent;
+	border-right: 0.5em solid transparent;
+	width: 10%;
+	height: auto;
+	bottom: 9vw;
+	left: 19.5vw;
+	transform:rotate(27deg);
+	font-size: 3vw;
+}
+
+.tpz1 {
+	border-left: 0em solid transparent;
+	border-right: 0em solid transparent;
+	width: 7%;
+	height: auto;
+	bottom: -10vw;
+	left: -5vw;
+	transform:rotate(-30deg);
+	font-size: 50vw;
+}
+
+.tpz2 {
+	border-left: 0.1em solid transparent;
+	border-right: 0em solid transparent;
+	width: 20%;
+	height: auto;
+	bottom: 2vw;
+	left: 11vw;
+	transform:rotate(70deg);
+	font-size: 4vw;
+}
+
+.tpz3 {
+	border-left: 0.1em solid transparent;
+	border-right: 10em solid transparent;
+	width: 5%;
+	height: auto;
+	bottom: 25vw;
+	left: 7vw;
+	transform:rotate(-100deg);
+	font-size: 1vw;
+}
+
+.tpz4 {
+	border-top: 1em solid black;
+	z-index: 2;
+	border-left: 0.1em solid transparent;
+	border-right: 0.1em solid transparent;
+	width: 13%;
+	height: auto;
+	bottom: 25vw;
+	left: 7vw;
+	transform:rotate(-98deg);
+	font-size: 0.8vw;
+}
+
+.tpz5 {
+	border-top: 1em solid black;
+	z-index: 2;
+	border-left: 0.1em solid transparent;
+	border-right: 0.1em solid transparent;
+	width: 13%;
+	height: auto;
+	bottom: 24vw;
+	left: -5vw;
+	transform:rotate(-140deg);
+	font-size: 4.5vw;
+}
+
