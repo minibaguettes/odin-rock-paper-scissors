@@ -33,12 +33,12 @@ body {
 
 @font-face {
 	font-family: Fight;
-	src: url('Persona5main.ttf');
+	src: url('p5r/fonts/Persona5main.ttf');
 }
 
 @font-face {
 	font-family: Normal;
-	src: url('p5hatty.ttf');
+	src: url('p5r/fonts/p5hatty.ttf');
 }
 
 *{
@@ -148,20 +148,12 @@ body {
 }
 
 .buttons {
-	/*position: absolute;
-	/*bottom: 10vw;
-	left: 25vw;
-	width: 14vw;*/
 	height: auto;
-	
 	font-size: 2.2vw;
 	color: white;
 }
 
 .btn {
-	/*position: absolute;
-	padding: 2%;
-	width: 120%;*/
 	padding-right: 0.5vw;
 	overflow: hidden;
 	letter-spacing: -0.6vw;
@@ -169,7 +161,6 @@ body {
 
 .btn-h:hover {
 	background-color: red;
-	/*border: 3px solid red;*/
 	font-size: 2.5vw;
 }
 
@@ -338,12 +329,6 @@ body {
 	pointer-events: none;
 }
 
-	/* display: flex;
-	flex-direction: column;
-
-
-	position: absolute; */
-
 .crit-screen {
 	transform: scaleX(0);
 	transform-origin: 0% 50%;
@@ -467,104 +452,3 @@ body {
 		transform-origin: 100% 50%;
 	}
 }
-
-/* ~*~*~*~* SHAPES ~*~*~*~* */
-
-.tpz {
-	position: absolute;
-	z-index: 3;
-	border-top: 1em solid red;
-}
-
-.tpzr {
-	border-left: 0.1em solid transparent;
-	border-right: 0.5em solid transparent;
-	width: 45%;
-	height: auto;
-	bottom: 15vw;
-	left: -1vw;
-	transform:rotate(-23deg);
-	font-size: 2.5vw;
-}
-
-.tpzp {
-	border-left: 0.1em solid transparent;
-	border-right: 0.5em solid transparent;
-	width: 41%;
-	height: auto;
-	bottom: 12vw;
-	left: -1vw;
-	transform:rotate(5deg);
-	font-size: 3vw;
-}
-
-.tpzs {
-	border-left: 0.1em solid transparent;
-	border-right: 0.5em solid transparent;
-	width: 10%;
-	height: auto;
-	bottom: 9vw;
-	left: 19.5vw;
-	transform:rotate(27deg);
-	font-size: 3vw;
-}
-
-.tpz1 {
-	border-left: 0em solid transparent;
-	border-right: 0em solid transparent;
-	width: 7%;
-	height: auto;
-	bottom: -10vw;
-	left: -5vw;
-	transform:rotate(-30deg);
-	font-size: 50vw;
-}
-
-.tpz2 {
-	border-left: 0.1em solid transparent;
-	border-right: 0em solid transparent;
-	width: 20%;
-	height: auto;
-	bottom: 2vw;
-	left: 11vw;
-	transform:rotate(70deg);
-	font-size: 4vw;
-}
-
-.tpz3 {
-	border-left: 0.1em solid transparent;
-	border-right: 10em solid transparent;
-	width: 5%;
-	height: auto;
-	bottom: 25vw;
-	left: 7vw;
-	transform:rotate(-100deg);
-	font-size: 1vw;
-}
-
-.tpz4 {
-	border-top: 1em solid black;
-	z-index: 2;
-	border-left: 0.1em solid transparent;
-	border-right: 0.1em solid transparent;
-	width: 13%;
-	height: auto;
-	bottom: 25vw;
-	left: 7vw;
-	transform:rotate(-98deg);
-	font-size: 0.8vw;
-}
-
-.tpz5 {
-	border-top: 1em solid black;
-	z-index: 2;
-	border-left: 0.1em solid transparent;
-	border-right: 0.1em solid transparent;
-	width: 13%;
-	height: auto;
-	bottom: 24vw;
-	left: -5vw;
-	transform:rotate(-140deg);
-	font-size: 4.5vw;
-}
-

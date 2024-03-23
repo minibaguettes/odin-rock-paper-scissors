@@ -15,8 +15,8 @@ headingRect.textContent = 'Bringer of Misfortune';
 const cpu = document.querySelector('#cpu');
 
 // assign images to var
-const cpuIdle = 'p5r/p5r-shiki-ouji-idle.png';
-const cpuWin = 'p5r/p5r-shiki-ouji-attack.png';
+const cpuIdle = 'p5r/cpu/p5r-shiki-ouji-idle.png';
+const cpuWin = 'p5r/cpu/p5r-shiki-ouji-attack.png';
 
 // get cpu image and set to init image
 let cpuImg = document.querySelector('#cimg');
@@ -24,7 +24,7 @@ cpuImg.src = cpuIdle;
 
 // get cpu score image and set to init image
 const cpuScoreImg = document.querySelector('#cpu-score-img');
-cpuScoreImg.src = 'p5r/p5r-cpu-hp-5.png';
+cpuScoreImg.src = 'p5r/cpu-hp/p5r-cpu-hp-5.png';
 
 // get cpu choice and score
 let cpuChoice = document.createElement('span');
@@ -43,9 +43,9 @@ let cpuTemp = cpuScoreImg.src;
 const user = document.querySelector('#user');
 
 // assign images to var
-const jokerIdle = 'p5r/p5r-joker-idle.png';
-const jokerWin = 'p5r/p5r-joker-win.png';
-const jokerHurt = 'p5r/p5r-joker-hurt.png';
+const jokerIdle = 'p5r/user/p5r-joker-idle.png';
+const jokerWin = 'p5r/user/p5r-joker-win.png';
+const jokerHurt = 'p5r/user/p5r-joker-hurt.png';
 
 // get user image and set init
 let userImg = document.querySelector('#uimg');
@@ -70,14 +70,14 @@ const footingScoreHP = document.querySelector('.footing-score-HP');
 let userScore = document.createElement('span');
 userScore.classList.add('userScore');
 const userScoreImg = document.querySelector('#user-score-img');
-userScoreImg.src = 'p5r/p5r-user-score.png';
+userScoreImg.src = 'p5r/user/p5r-user-score.png';
 footingScore.appendChild(userScore);
 
 // get dialogue and dialogue image, set image to init
 const dialogue = document.querySelector('#dialogue');
 dialogue.classList.add('hide');
 const dialogueImg = document.createElement('img');
-dialogueImg.src = 'p5r/p5r-dialogue.png';
+dialogueImg.src = 'p5r/user/p5r-dialogue.png';
 dialogueImg.classList.add('dialogue-img');
 const dialogueText = document.createElement('span');
 dialogueText.classList.add('dialogue-text');
@@ -97,37 +97,37 @@ const playBtn = document.querySelector('#play');
 
 // start screen
 const startScreen = document.createElement('img');
-startScreen.src = 'p5r/p5r-start-screen.png';
+startScreen.src = 'p5r/screens/p5r-start-screen.png';
 startScreen.classList.add('start-screen');
 
 // loading screen
 const loadingScreen = document.createElement('img');
-loadingScreen.src = 'p5r/p5r-general-loading-screen.png';
+loadingScreen.src = 'p5r/screens/p5r-general-loading-screen.png';
 loadingScreen.classList.add('loading-screen');
 
 // victory screen transition - from fight to crit to victory 
 const critScreen = document.createElement('img');
-critScreen.src = 'p5r/p5r-crit.png';
+critScreen.src = 'p5r/screens/p5r-crit.png';
 critScreen.classList.add('crit-screen');
 
 // victory screen - colored victory screen; beginning
 const victoryScreen = document.createElement('img');
-victoryScreen.src = 'p5r/p5r-victory.png';
+victoryScreen.src = 'p5r/screens/p5r-victory.png';
 victoryScreen.classList.add('victory-screen');
 
 // victory screen - black and white victory screen; end
 const victoryEnd = document.createElement('img');
-victoryEnd.src = 'p5r/p5r-win-end.png';
+victoryEnd.src = 'p5r/screens/p5r-win-end.png';
 victoryEnd.classList.add('victory-end');
 
 // lose screen transition - from fight to load to lose 
 const loseLoad = document.createElement('img');
-loseLoad.src = 'p5r/p5r-velvet-room-loading.png';
+loseLoad.src = 'p5r/screens/p5r-velvet-room-loading.png';
 loseLoad.classList.add('lose-load');
 
 // lose screen - lose screen; end
 const loseEnd = document.createElement('img');
-loseEnd.src = 'p5r/p5r-velvet-room.png';
+loseEnd.src = 'p5r/screens/p5r-velvet-room.png';
 loseEnd.classList.add('lose-end');
 
 // lose screen dialogue
@@ -191,7 +191,7 @@ document.addEventListener('keydown', handleKeys);
 // look for mouse hover on cpu score image - hide health image, show numerical value
 cpuScoreImg.addEventListener('mouseover', function() {
   cpuScore.classList.toggle('hp-toggle');
-  cpuScoreImg.src = 'p5r/p5r-cpu-hp-0.png';
+  cpuScoreImg.src = 'p5r/cpu-hp/p5r-cpu-hp-0.png';
 });
 
 // look for mouse hover off cpu score image - hide numerical value, show health image
@@ -218,11 +218,15 @@ firstLoad();
 function preGame() {
   setTimeout(function() {
     setTimeout(function() {
+
       // (3) remove loading screen
+
       if (loadingScreen.parentElement === scene ){
         scene.removeChild(loadingScreen);         // remove loading screen
       }
       loadingScreen.classList.remove('fade-out'); // reset loading screen
+      homeBtn.classList.remove('hide');           // reset home btn
+
     }, 1000);
 
     // (2) fix loading screen and reset elements
@@ -234,9 +238,9 @@ function preGame() {
       scene.removeChild(startScreen);           // remove start screen if present
     }
     // reset user and cpu scores and score image
-    cpuScore.textContent = 1;
-    cpuScoreImg.src = 'p5r/p5r-cpu-hp-5.png'
-    userScore.textContent = 1;
+    cpuScore.textContent = 5;
+    cpuScoreImg.src = 'p5r/cpu-hp/p5r-cpu-hp-5.png'
+    userScore.textContent = 5;
     // reset user and cpu images
     userImg.classList.add('userImgIdle');
     cpuImg.classList.add('cpuImgIdle');
@@ -256,7 +260,6 @@ function preGame() {
     // reset buttons
     sceneBtns.id = 'scene-btns-fight';
     playBtn.classList.add('hide');
-    homeBtn.classList.remove('hide');
     // fade out loading screen
     loadingScreen.classList.add('fade-out');
 
@@ -469,7 +472,7 @@ function computeScore(result) {
     userScore.textContent = parseInt(userScore.textContent) - 1;
   }
   // set cpu score img to appropriate img
-  cpuScoreImg.src = 'p5r/p5r-cpu-hp-' + cpuScore.textContent + '.png'
+  cpuScoreImg.src = 'p5r/cpu-hp/p5r-cpu-hp-' + cpuScore.textContent + '.png'
   // set cpuTemp to the new cpu score img (for hovering purposes)
   cpuTemp = cpuScoreImg.src;
 
